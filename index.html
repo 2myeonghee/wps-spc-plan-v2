@@ -327,46 +327,83 @@
   }
   .rm-item h4 { margin: 0 0 8px; font-size: 14px; }
 
-  /* 인쇄 */
+  /* ══════════════════════════════════════════
+     인쇄 전용 스타일 (PDF 출력 기준)
+     A4 / 여백 18mm / 장(章) 단위 새 페이지
+  ══════════════════════════════════════════ */
   @page {
     size: A4;
-    margin: 18mm 16mm 18mm 16mm; /* 상/우/하/좌 — Word 레터보다 살짝 좁게 */
+    margin: 18mm 17mm 18mm 17mm;
   }
   @media print {
-    /* 레이아웃 리셋 */
-    body { font-size: 13px; line-height: 1.75; }
-    .body-wrap { padding: 0; max-width: 100%; }
-
-    /* 커버: 한 페이지 전체 */
-    .cover { page-break-after: always; break-after: page; padding: 60px 40px; }
-
-    /* 목차: 새 페이지 */
-    .toc-section { page-break-before: always; break-before: page; page-break-after: always; break-after: page; }
-
-    /* 섹션 헤더 + 내용 함께 유지 */
-    section { break-inside: auto; page-break-inside: auto; }
-    .sec-head { break-after: avoid; page-break-after: avoid; }
-    h2, h3, h4 { break-after: avoid; page-break-after: avoid; orphans: 3; widows: 3; }
-    h3 { margin-top: 18px; }
-
-    /* 표: 잘림 방지 */
-    table { break-inside: auto; page-break-inside: auto; display: table !important; width: 100% !important; overflow: visible !important; font-size: 12px; }
-    thead { display: table-header-group; }
-    tr { break-inside: avoid; page-break-inside: avoid; }
-    td, th { white-space: normal !important; } /* 인쇄 시엔 자연 줄바꿈 허용 */
-    th:first-child, td:first-child { white-space: nowrap !important; } /* 단, 첫 열은 nowrap 유지 */
-
-    /* 카드·노트 박스 */
-    .note, .equity-card { break-inside: avoid; page-break-inside: avoid; }
-
-    /* 불필요 요소 제거 */
-    .cover-conf { display: none; }
-
-    /* 링크 색상 */
+    /* ── 기본 ── */
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body { font-size: 12.5px; line-height: 1.75; }
     a { color: inherit !important; text-decoration: none !important; }
 
-    /* 숨김 처리 필요 없는 요소들 */
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    /* ── 컨테이너 ── */
+    .body-wrap { padding: 0; max-width: 100%; }
+
+    /* ── 커버: 1페이지 독립 ── */
+    .cover {
+      page-break-after: always; break-after: page;
+      padding: 72px 48px 60px;
+      min-height: unset;
+    }
+
+    /* ── 목차: 1페이지 독립 ── */
+    .toc-page {
+      page-break-before: always; break-before: page;
+      page-break-after: always; break-after: page;
+    }
+
+    /* ── 섹션(장): 각각 새 페이지에서 시작 ── */
+    section {
+      page-break-before: always; break-before: page;
+      page-break-inside: auto; break-inside: auto;
+    }
+
+    /* ── 섹션 헤더는 다음 내용과 분리 금지 ── */
+    .sec-head { page-break-after: avoid; break-after: avoid; }
+    h2, h3, h4 { page-break-after: avoid; break-after: avoid; orphans: 3; widows: 3; }
+
+    /* ── 표: 행 단위 분리는 허용, 행 내부 잘림 금지 ── */
+    table {
+      display: table !important;
+      width: 100% !important;
+      overflow: visible !important;
+      page-break-inside: auto; break-inside: auto;
+      font-size: 12px;
+    }
+    thead { display: table-header-group; } /* 다음 페이지에서도 헤더 반복 */
+    tr     { page-break-inside: avoid; break-inside: avoid; }
+    td, th { white-space: normal !important; word-break: keep-all; }
+    th:first-child, td:first-child { white-space: nowrap !important; }
+
+    /* ── 카드·박스류: 내부 잘림 금지 ── */
+    .note,
+    .equity-card,
+    .reason-card,
+    .rev-card,
+    .vision-card,
+    .rm-item,
+    .b-chip { page-break-inside: avoid; break-inside: avoid; }
+
+    /* ── 그리드: 인쇄 시 1열로 변환 (오버플로 방지) ── */
+    .equity-grid,
+    .rev-grid,
+    .reason-grid,
+    .vision-grid,
+    .proscons    { grid-template-columns: 1fr !important; }
+
+    /* ── 브랜드 로드맵 칩 ── */
+    .brand-row { display: flex; flex-wrap: wrap; gap: 8px; page-break-inside: avoid; break-inside: avoid; }
+
+    /* ── 지분 바 그래프 ── */
+    .share-bar { page-break-inside: avoid; break-inside: avoid; }
+
+    /* ── 불필요 요소 ── */
+    .cover-conf { display: none; }
   }
   @media (max-width: 640px) {
     .cover { padding: 40px 24px; }
