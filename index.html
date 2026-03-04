@@ -173,8 +173,15 @@
     padding: 9px 14px;
     text-align: left;
     font-size: 13px;
+    white-space: nowrap;
   }
   td { background: #fff; padding: 9px 14px; vertical-align: top; border-bottom: 1px solid #f0f0f0; }
+  td:first-child { white-space: nowrap; }
+  /* 모바일: 표 가로 스크롤 허용 */
+  @media (max-width: 768px) {
+    section table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    td:first-child { white-space: nowrap; }
+  }
   tr:last-child td { border-bottom: none; }
 
   /* 노트 블록 */
@@ -720,7 +727,7 @@
       <h2>사업 모델 및 수익 구조</h2>
     </div>
 
-    <p>본 SPC의 수익 구조는 진입 방식에 따라 <strong>직접 투자형(Type A)과 수수료형(Type B)</strong>으로 구분된다. 헬리오시티는 SPC가 5억을 직접 투자한 Type A의 기준 단지이며, 실측 운영 데이터를 바탕으로 손익 구조를 분석한다.</p>
+    <p>본 SPC의 수익 구조는 진입 방식에 따라 <strong>파일럿형 (헬리오시티 직접투자)과 표준 확장형 (수수료 모델)</strong>으로 구분된다. 헬리오시티는 SPC가 5억을 직접 투자한 파일럿형의 기준 단지이며, 실측 운영 데이터를 바탕으로 손익 구조를 분석한다.</p>
 
     <h3>8.1 업계 비교 지표 (외부 데이터 기반)</h3>
     <p>헬리오시티 손익 분석에 앞서, 국내 프리미엄 카페 업계의 평균 원가 구조를 참고 기준으로 정리한다.</p>
@@ -738,7 +745,7 @@
       헬리오시티 클럽하우스의 원가율 60%, 인건비 비율 58%는 업계 기준을 대폭 초과한다. 이는 ① 쿠폰 소비율 70%(쿠폰 비용이 매출 원가와 별도로 이중 계상), ② 11명의 과잉 인력 운영, ③ SPC의 5억 투자에 따른 기회비용 부담이 복합적으로 작용한 결과다. 구조적 개선 없이는 매출이 증가해도 적자 구조가 유지되는 악순환에 빠질 수 있다.
     </div>
 
-    <h3>8.2 Type A — 헬리오시티 현재 손익 분석 (2025년 하반기 월 평균 실측)</h3>
+    <h3>8.2 파일럿형 (헬리오시티) — 현재 손익 분석 (2025년 하반기 월 평균 실측)</h3>
     <table>
       <tr><th>구분</th><th>항목</th><th>금액</th><th>산출 기준</th></tr>
       <tr><td rowspan="2"><strong>매출</strong></td><td>실결제 음료 매출</td><td>1,766만원</td><td>총 매출 - 쿠폰 매출</td></tr>
@@ -752,7 +759,7 @@
       <tr><td></td><td><strong>월 순손익</strong></td><td><strong>△3,898만원</strong></td><td>현재 구조 기준 (연 △4.68억)</td></tr>
     </table>
 
-    <h3>8.3 Type A — 2026.02 개선안 및 예상 효과</h3>
+    <h3>8.3 파일럿형 (헬리오시티) — 2026.02 개선안 및 예상 효과</h3>
     <table>
       <tr><th>개선 항목</th><th>현재</th><th>개선안</th><th>예상 효과</th></tr>
       <tr><td>수수료 구조</td><td>매출총이익 5:5 배분</td><td><strong>매출 기반 수수료 15% 적용</strong></td><td>정산 단순화, 투명성 확보</td></tr>
@@ -778,8 +785,8 @@
       <tr><td>입대의 입장</td><td>정산 복잡, 분쟁 여지</td><td><strong>명료하고 수용 용이</strong></td></tr>
     </table>
 
-    <h3>8.5 Type B — 일반 단지 수수료 구조 (월 매출 3,000만원 기준)</h3>
-    <p>Type B 단지는 SPC 초기 자본을 투입하지 않는다. 아파트너가 WPS 입점 중개·계약 관리·플랫폼 연동 서비스를 제공하고 수수료를 수취하는 구조다.</p>
+    <h3>8.5 표준 확장형 — 일반 단지 수수료 구조 (월 매출 3,000만원 기준)</h3>
+    <p>표준 확장형 단지는 SPC 초기 자본을 투입하지 않는다. 아파트너가 WPS 입점 중개·계약 관리·플랫폼 연동 서비스를 제공하고 수수료를 수취하는 구조다.</p>
     <table>
       <tr><th>수익원</th><th>수취 방식</th><th>단지 1개 기준 (월)</th></tr>
       <tr><td>WPS 입점 중개 수수료</td><td>계약 완료 시 일회성</td><td>500만원 내외 (계약 1회)</td></tr>
@@ -799,10 +806,10 @@
 
     <div class="note notice">
       <div class="note-label">시뮬레이션 전제</div>
-      헬리오시티 실측 데이터(2025년 하반기 월 평균)를 기준으로 Type A 손익 개선 경로를 분석하고, Type B 단지 확산 시나리오를 병행한다. 지분 구조는 70:30 기준으로 SPC 수익 귀속을 산정하며, 모든 수치는 추정치로 실제 계약 전 검증이 필요하다.
+      헬리오시티 실측 데이터(2025년 하반기 월 평균)를 기준으로 파일럿형(헬리오시티) 손익 개선 경로를 분석하고, 표준 확장형 단지 확산 시나리오를 병행한다. 지분 구조는 70:30 기준으로 SPC 수익 귀속을 산정하며, 모든 수치는 추정치로 실제 계약 전 검증이 필요하다.
     </div>
 
-    <h3>9.1 Type A (헬리오시티) — 5억 투자 회수 시뮬레이션</h3>
+    <h3>9.1 파일럿형 (헬리오시티) — 5억 투자 회수 시뮬레이션</h3>
     <p>SPC가 5억을 투자한 헬리오시티 단지에서 월 운영 적자가 지속될 경우, 투자금이 어느 시점에 소진되는지를 분석한다. 이는 현재 구조의 가장 중요한 리스크 지표다.</p>
     <table>
       <tr><th>구분</th><th>현재 구조<br>(월 △3,898만원)</th><th>개선안 적용 후<br>(월 △2,000만원)</th><th>흑자 전환 목표<br>(월 +500만원)</th></tr>
@@ -817,7 +824,7 @@
       현재 구조가 지속될 경우 약 13개월 내에 투자금 5억이 전부 소진된다. 개선안 적용 후에도 약 2.1년이면 소진되며, 이후 SPC는 추가 자본을 투입하거나 사업 구조를 재설계해야 한다. 따라서 <strong>개선안의 즉각적 실행과 동시에 흑자 전환 경로를 명확히 확보하는 것이 SPC 설립의 선결 과제</strong>다.
     </div>
 
-    <h3>9.2 Type A — 흑자 전환을 위한 필요 조건</h3>
+    <h3>9.2 파일럿형 — 흑자 전환을 위한 필요 조건</h3>
     <p>헬리오시티 클럽하우스가 흑자로 전환되려면 월 총 비용(현재 8,598만원)을 월 매출(현재 4,700만원) 이하로 낮추거나, 매출을 8,598만원 이상으로 끌어올려야 한다.</p>
     <table>
       <tr><th>시나리오</th><th>월 매출</th><th>월 비용</th><th>월 손익</th><th>달성 방법</th></tr>
@@ -829,7 +836,7 @@
     </table>
     <p style="font-size:12.5px;color:var(--muted);">9,510세대 단지 특성상 로케이션 추가(현재 84개 중 확장 여부)와 배달 서비스 도입이 가장 현실적인 매출 확대 경로로 분석된다.</p>
 
-    <h3>9.3 Type B — 단지 수별 SPC 수익 분기점 분석</h3>
+    <h3>9.3 표준 확장형 — 단지 수별 SPC 수익 분기점 분석</h3>
     <table class="tbl-scenario">
       <tr>
         <th>단지 수</th>
@@ -846,21 +853,21 @@
       <tr><td>20개 단지</td><td>6,800만원</td><td>8.16억원</td><td>5.71억원</td><td>2.45억원</td></tr>
       <tr><td>황해 200개 단지 全 전환</td><td>6.8억원</td><td>81.6억원</td><td>57.1억원</td><td>24.5억원</td></tr>
     </table>
-    <p style="font-size:12.5px;color:var(--muted);">손익분기: 70:30 기준 아파트너 초기 투자 3.5억 대비. Type B 단지 월 수취 340만원 기준 산출. 중개 수수료 일회성 수취 분은 별도.</p>
+    <p style="font-size:12.5px;color:var(--muted);">손익분기: 70:30 기준 아파트너 초기 투자 3.5억 대비. 표준 확장형 단지 월 수취 340만원 기준 산출. 중개 수수료 일회성 수취 분은 별도.</p>
 
-    <h3>9.4 3개년 통합 시나리오 (Type A + Type B 병행)</h3>
+    <h3>9.4 3개년 통합 시나리오 (파일럿형 + 표준 확장형 병행)</h3>
     <table class="tbl-scenario">
       <tr><th>구분</th><th>Worst</th><th>Normal</th><th>Best</th></tr>
-      <tr><td colspan="4" style="background:#f8f9fa;font-weight:700;font-size:13px;">─ Type A (헬리오시티) ─</td></tr>
+      <tr><td colspan="4" style="background:#f8f9fa;font-weight:700;font-size:13px;">─ 파일럿형 (헬리오시티) ─</td></tr>
       <tr><td>개선안 실행 시점</td><td>6개월 후</td><td>3개월 후</td><td>즉시</td></tr>
       <tr><td>흑자 전환 시점</td><td>36개월 이상</td><td>24개월</td><td>18개월</td></tr>
       <tr><td>3년 누적 손익 (A)</td><td>△7억</td><td>△3억</td><td>△0.5억</td></tr>
-      <tr><td colspan="4" style="background:#f8f9fa;font-weight:700;font-size:13px;">─ Type B (일반 단지) ─</td></tr>
+      <tr><td colspan="4" style="background:#f8f9fa;font-weight:700;font-size:13px;">─ 표준 확장형 (일반 단지) ─</td></tr>
       <tr><td>1차년도 신규 단지</td><td>2개</td><td>5개</td><td>10개</td></tr>
       <tr><td>2차년도 신규 단지</td><td>5개</td><td>12개</td><td>25개</td></tr>
       <tr><td>3차년도 신규 단지</td><td>8개</td><td>20개</td><td>40개</td></tr>
       <tr><td>3년 말 누적 단지</td><td>15개</td><td>37개</td><td>75개</td></tr>
-      <tr><td>3차년도 Type B 연간 수익</td><td>0.74억</td><td>1.81억</td><td>3.67억</td></tr>
+      <tr><td>3차년도 표준 확장형 연간 수익</td><td>0.74억</td><td>1.81억</td><td>3.67억</td></tr>
       <tr><td>아파트너 3년 누적 수익 (B, 70%)</td><td>약 1.6억</td><td>약 4.9억</td><td>약 13억</td></tr>
       <tr class="highlight"><td><strong>아파트너 3년 통합 순손익</strong></td><td><strong>△5.4억</strong></td><td><strong>+1.9억</strong></td><td><strong>+12.5억</strong></td></tr>
       <tr><td>전체 손익분기 도달</td><td>4년 이상</td><td>약 2.5년</td><td>약 1.5년</td></tr>
@@ -868,7 +875,7 @@
 
     <div class="note">
       <div class="note-label">황해 200개 단지 네트워크 조기 활용 시</div>
-      황해 기보유 약 200개 단지 신뢰 관계를 1차년도부터 본격 활용할 경우, Normal 시나리오 기준 2차년도 내 30개 단지 이상 동시 진입이 현실적으로 가능하다. 이 경우 Best 시나리오 초과 달성도 가능하며, Type B 수익이 Type A 누적 손실을 조기에 상쇄하는 구조로 전환된다. 200개 단지 중 절반(100개)만 전환 시 연간 Type B SPC 수익 약 40.8억, 아파트너 귀속 약 28.6억에 달한다.
+      황해 기보유 약 200개 단지 신뢰 관계를 1차년도부터 본격 활용할 경우, Normal 시나리오 기준 2차년도 내 30개 단지 이상 동시 진입이 현실적으로 가능하다. 이 경우 Best 시나리오 초과 달성도 가능하며, 표준 확장형 수익이 파일럿형(헬리오시티) 누적 손실을 조기에 상쇄하는 구조로 전환된다. 200개 단지 중 절반(100개)만 전환 시 연간 표준 확장형 SPC 수익 약 40.8억, 아파트너 귀속 약 28.6억에 달한다.
     </div>
   </section>
 
