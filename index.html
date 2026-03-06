@@ -368,17 +368,29 @@
     h2, h3, h4 { page-break-after: avoid; break-after: avoid; orphans: 3; widows: 3; }
 
     /* ── 표: 행 단위 분리는 허용, 행 내부 잘림 금지 ── */
+    .table-wrap { overflow: visible !important; }
     table {
       display: table !important;
       width: 100% !important;
-      overflow: visible !important;
+      min-width: 0 !important;
+      table-layout: auto !important;
+      border-collapse: collapse !important;
       page-break-inside: auto; break-inside: auto;
-      font-size: 12px;
+      font-size: 10.5px !important;
     }
     thead { display: table-header-group; } /* 다음 페이지에서도 헤더 반복 */
-    tr     { page-break-inside: avoid; break-inside: avoid; }
-    td, th { white-space: normal !important; word-break: keep-all; }
-    th:first-child, td:first-child { white-space: nowrap !important; }
+    tbody { display: table-row-group; }
+    tr    { page-break-inside: avoid; break-inside: avoid; }
+    td, th {
+      white-space: normal !important;
+      word-break: keep-all !important;
+      overflow-wrap: break-word !important;
+      padding: 7px 8px !important;
+      font-size: 10.5px !important;
+      vertical-align: top;
+    }
+    /* ── 5컬럼 이상 표: 헤더 줄바꿈 허용 ── */
+    th { white-space: normal !important; line-height: 1.35 !important; }
 
     /* ── 카드·박스류: 내부 잘림 금지 ── */
     .note,
@@ -395,6 +407,9 @@
     .reason-grid,
     .vision-grid,
     .proscons    { grid-template-columns: 1fr !important; }
+
+    /* ── 커버 서명란: 인쇄 시 4열 유지 ── */
+    .cover-sigline { grid-template-columns: repeat(4, 1fr) !important; }
 
     /* ── 브랜드 로드맵 칩 ── */
     .brand-row { display: flex; flex-wrap: wrap; gap: 8px; page-break-inside: avoid; break-inside: avoid; }
